@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style: none
+}
+
+.pic {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  background-color: #fff;
+  background-size: cover;
+}
+.apple {
+  background-image: url('../img/apple.jpg')
+}
+.orange {
+  background-image: url('../img/orange.jpg')
+}
+.banana {
+  background-image: url('../img/banana.jpg')
+}

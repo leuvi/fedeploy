@@ -1,0 +1,11 @@
+#日志相关
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+#node模块
+node_modules/
+
+#构建目录
+dist/

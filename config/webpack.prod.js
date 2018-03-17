@@ -4,6 +4,8 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const CompressionPlugin = require('compression-webpack-plugin')
+const WebpackAssetsManifest = require('webpack-assets-manifest')
 const base = require('./base.js')
 
 module.exports = merge(base, {
@@ -50,15 +52,24 @@ module.exports = merge(base, {
       }
     }),
     new webpack.HashedModuleIdsPlugin(),
+    //webpack4代码分拆会有个空样式文件bug，待官方修复！
     new ExtractTextPlugin('style.[contenthash:8].css'),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin(),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|css|html)$/
+    }),
+    new WebpackAssetsManifest()
   ],
   optimization: {
-    runtimeChunk: false,
+    runtimeChunk: {
+      name: 'runtime'
+    },
     splitChunks: {
       cacheGroups: {
         commons: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /\.js$/,
           name: 'vendors',
           chunks: 'all'
         }

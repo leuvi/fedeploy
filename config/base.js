@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseUrl = file => path.resolve(file)
-const isProd = process.env.NODE_ENV
+const isProd = process.env.NODE_ENV == 'prod'
 
 module.exports = {
   entry: {
@@ -28,7 +28,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name(file) {
-                if(isProd == 'prod') {
+                if(isProd) {
                   return 'images/[hash].[ext]'
                 }
                 return '[name].[ext]'

@@ -13,13 +13,13 @@ import logo from '../assets/img/logo.jpg'
 class App extends React.Component {
   clickHandle1() {
     import('./es6_mod.js').then(obj => {
-      console.log('RT:' + obj.default)
+      console.log(obj.default)
     })
   }
   clickHandle2() {
     require.ensure([], () => {
       const obj = require('./commonjs_mod')
-      console.log('RT:' + obj)
+      console.log(obj)
     })
   }
   render() {

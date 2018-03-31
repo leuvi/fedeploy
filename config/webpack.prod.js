@@ -52,7 +52,6 @@ module.exports = merge(base, {
       }
     }),
     new webpack.HashedModuleIdsPlugin(),
-    //webpack4代码分拆会有个空样式文件bug，待官方修复！
     new ExtractTextPlugin('style.[contenthash:8].css'),
     new UglifyJSPlugin(),
     new CompressionPlugin({
@@ -69,7 +68,7 @@ module.exports = merge(base, {
     splitChunks: {
       cacheGroups: {
         commons: {
-          test: /\.js$/,
+          test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           chunks: 'all'
         }

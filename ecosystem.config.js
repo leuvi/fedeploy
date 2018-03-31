@@ -27,7 +27,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/leuvi/pm2.git',
       path : '/opt/app/fruit',
-      'post-deploy' : 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'git pull origin master && yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
